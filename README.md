@@ -4,65 +4,61 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `Context API - useContext`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**1.-** Se crea una carpeta dentro de src con el nombre de context.<br />
+**2.-** Dentro de la misma creamos el archivo .JS con el nombre del context `CategoriasContext`<br />
+**3.-** Dentro la estructura del `CONTEXT` seria algo asi: <br />
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+``import React, { useState, createContext } from 'react';`` <br />
 
-### `npm test`
+// 1.-Crear el Context <br />
+``export const CategoriasContext = createContext();`` <br />
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+// 2.-Creamos el Provider: es donde se encuentran las funciones y states del context <br />
+``const CategoriasProvider = (props) => {`` <br />  <br />
+    //Creamos el state <br />
+    ``const [hola, setHola] = useState('hola');`` <br /> <br />
+    ``return (`` <br />
+        //Retornaamos el context y dentro invocamos los childrens de todos los componentes del padre a usar <br />
+        ``>CategoriasContext.Provider`` <br />
+            //Pasamos lo que queremos compartir a los hijos <br />
+            ``value={{`` <br />
+                ``hola,`` <br />
+                ``setHola`` <br />
+            ``}}`` <br />
+        ``<`` <br />
+            ``{props.children}`` <br />
+        ``>/CategoriasContext.Provider<`` <br />
+    ``)`` <br />
+``}`` <br /> <br />
+// 3.-Exportamos el Provider <br /> 
+``export default CategoriasProvider;`` <br /> <br />
 
-### `npm run build`
+**4.-**Para usar el `CONTEXT` tenemos que **importarlo** y luego **colocarlo** en el componente **padre** y llamarlo como un FRAGMENT pero por su nombre `CategoriasContext` <br /> <br />
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**5.-**Para consumir el context desde cualquier hijo de la rama solo se tiene que:<br /> <br />
+        **5.1.-**Importamos el `Context`: `import { Nombre } from '../context/nombre';`<br />
+        **5.2.-**Tomamos por destructuring los elementos a usar `const { elemento } = Nombre`<br />
+        **5.3.-**Usamos el elemento a nuestra conveniencia `elemento`<br />
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Nota: Se pueden observar varios ejemplos en los Context creados en el proyecto!**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `API`
 
-### `npm run eject`
+API para `Cocteles`<br />
+Link: [https://www.thecocktaildb.com/api.php]<br />
+Endpoint Ingredients: [https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Dry_Vermouth,Gin,Anis]<br />
+EdnPoint `Compuesta`: solo agregamos el & y luego el c=valor para la categoria segun la Doc.<br />
+Endpoint I/C: [https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Ton&c=Ordinary_Drink]<br />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `Usando MODALS en React`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### `Material UI`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Es una de las maneras mas sencillas de usar modals en nuestros proyectos de react.<br />
+Link: [https://material-ui.com/].<br />
+Instalacion: `npm i @material-ui/core`.<br />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Nota: Las instrucciones de como generar el modal se encuentran en el componente Receta.js!**
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
